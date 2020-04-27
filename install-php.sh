@@ -5,4 +5,9 @@ sudo add-apt-repository ppa:ondrej/php
 
 sudo apt update
 
-sudo apt install apache2 php7.3 php7.3-mbstring php7.3-xml php-zip php7.3-gd php7.3-mysql
+sudo apt install apache2 php7.4 php7.4-mbstring php7.4-xml php-zip php7.4-gd php7.4-mysql php-curl mariadb-server
+
+
+sudo mysql_secure_installation
+
+sudo mysql SET PASSWORD FOR 'root'@'localhost' = PASSWORD('manager');
