@@ -20,14 +20,14 @@ case $input in
 
     echo "[1] Mysql"
     echo "[2] MariaDB"
-    # echo "[3] Postgres"
+    echo "[3] Postgres"
     echo "PRESS ENTER TO NOT INSTALL"
 
     read -r -p "Choose database server: " database_server
 
     case $database_server in
     1) 
-        echo "Installing mysql-server"; #sudo apt -yqq install mysql-server &> /dev/null
+        echo "Installing mysql-server"; sudo apt -yqq install mysql-server &> /dev/null
         
         read -r -p "Password to Mysql root user: " mysqlroot
 
@@ -43,22 +43,19 @@ case $input in
         echo "Fixing mysql login"; sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysqlroot';" &> /dev/null
 
     ;;
-    # 3) echo "Installing postgresql"; sudo apt -yqq install postgresql &> /dev/null;;
+    3) echo "Installing postgresql"; sudo apt -yqq install postgresql &> /dev/null;;
     *) echo "Will not install database server";;
     esac
 
-    # # create database
+    ;;
 
+        [nN][oO]|[nN])
+    echo "Will not install database server"
+        ;;
+        *)
+    echo "Will not install database server"
+    ;;
 
- ;;
-    [nN][oO]|[nN])
- echo "Will not install database server"
-       ;;
-    *)
- echo "Will not install database server"
- ;;
-
- 
 esac
 
 
@@ -77,11 +74,3 @@ echo "Fixing apache 'www' folder permission" ;
 
 echo "Done"
 
-
-# Ask the user for their name
-# echo "What database server you need? [1: mysql | 2: postgres]"
-# read database
-
-# echo "running update" ; sudo apt update -yqq 2> /dev/null
-
-# echo It\'s nice to meet you $database
