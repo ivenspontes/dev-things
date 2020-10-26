@@ -20,19 +20,33 @@ case $input in
 
     echo "[1] Mysql"
     echo "[2] MariaDB"
-    echo "[3] Postgres"
+    # echo "[3] Postgres"
     echo "PRESS ENTER TO NOT INSTALL"
 
     read -r -p "Choose database server: " database_server
 
     case $database_server in
-    1) echo "Installing mysql-server"; sudo apt -yqq install mysql-server &> /dev/null;;
-    2) echo "Installing mariadb-server"; sudo apt -yqq install neofetch  &> /dev/null;;
-    3) echo "Installing postgresql"; sudo apt -yqq install postgresql &> /dev/null;;
+    1) 
+        echo "Installing mysql-server"; #sudo apt -yqq install mysql-server &> /dev/null
+        
+        read -r -p "Password to Mysql root user: " mysqlroot
+
+        echo "Fixing mysql login"; sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysqlroot';" > &> /dev/null
+        
+    ;;
+
+    2) 
+        echo "Installing mariadb-server"; sudo apt -yqq install neofetch  &> /dev/null
+        
+        read -r -p "Password to Mysql root user: " mysqlroot
+
+        echo "Fixing mysql login"; sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysqlroot';" > &> /dev/null
+
+    ;;
+    # 3) echo "Installing postgresql"; sudo apt -yqq install postgresql &> /dev/null;;
     *) echo "Will not install database server";;
     esac
 
-    # # fix password
     # # create database
 
 
@@ -46,7 +60,6 @@ case $input in
 
  
 esac
-
 
 
 echo "Fixing composer permissions" ; sudo chown -R $USER:$USER /home/$USER/.composer > /dev/null
