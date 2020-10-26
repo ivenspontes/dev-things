@@ -7,7 +7,7 @@ echo "Installing curl" ; sudo apt -yqq install curl &> /dev/null
 
 echo "Installing software-properties-common" ; sudo apt -yqq install software-properties-common &> /dev/null
 
-echo "Installing ppa:ondrej/php" ; sudo add-apt-repository ppa:ondrej/php &> /dev/null
+echo "Installing ppa:ondrej/php" ; sudo add-apt-repository ppa:ondrej/php -y &> /dev/null
 
 echo "Installing PHP environment" ; sudo apt -yqq install apache2 php7.4 php7.4-mbstring php7.4-xml php-zip php7.4-gd php7.4-mysql php-curl &> /dev/null
 
